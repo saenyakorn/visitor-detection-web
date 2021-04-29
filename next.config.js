@@ -6,11 +6,12 @@ module.exports = withOptimizedImages(
   withAntdLess({
     optimizeImages: false, // need to change this to `true` later
     cssModules: true,
-    lessVarsFilePath: './src/styles/theme.less',
+    lessVarsFilePath: 'src/styles/variables.less',
+    lessVarsFilePathAppendToEndOfContent: false,
     cssLoaderOptions: {},
     webpack: (config, options) => {
       // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
       return config
     },
-  })
+  }),
 )
