@@ -1,5 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 module.exports = {
-  presets: ["next/babel"],
-  plugins: [],
+  presets: [['next/babel']],
+  plugins: [
+    [
+      'module-resolver',
+      {
+        root: ['./src'],
+        alias: {
+          '@app/*': './*',
+        },
+      },
+    ],
+    ['import', { libraryName: 'antd', style: true }],
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+  ],
 }
