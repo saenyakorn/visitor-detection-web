@@ -1,5 +1,11 @@
-import { Button } from 'antd'
+import { Dashboard, GettingStart } from '@app/components/templates'
+import { useSession } from 'next-auth/client'
 
-export default function Home() {
-  return <Button type="primary">Button</Button>
+export default function HomePage() {
+  const [session, loading] = useSession()
+
+  if (loading) return <div></div>
+  if (session) return <Dashboard />
+
+  return <GettingStart />
 }

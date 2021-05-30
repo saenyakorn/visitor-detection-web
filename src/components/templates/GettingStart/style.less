@@ -1,0 +1,33 @@
+@import '../../../styles/variables.less';
+
+.getting-start-container {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: 25vh;
+  .title {
+    font-size: 5em;
+    font-weight: 100;
+    margin: 0;
+    @media only screen and (max-width: @screen-md) {
+      font-size: 4em;
+    }
+    @media only screen and (max-width: @screen-sm) {
+      font-size: 3em;
+    }
+  }
+  .text {
+    font-size: 2em;
+    font-weight: 100;
+    @media only screen and (max-width: @screen-md) {
+      font-size: 1.5em;
+    }
+    @media only screen and (max-width: @screen-sm) {
+      font-size: 1em;
+    }
+  }
+  .button-group {
+    margin-top: @spacing * 4px;
+  }
+}
