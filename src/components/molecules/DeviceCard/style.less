@@ -1,0 +1,16 @@
+.device-card {
+  .ant-card-body {
+    display: flex;
+    .button {
+      margin-left: auto;
+    }
+  }
+  @media only screen and (max-width: @screen-md) {
+    .ant-card-body {
+      flex-direction: column;
+      .button {
+        margin-left: 0;
+      }
+    }
+  }
+}

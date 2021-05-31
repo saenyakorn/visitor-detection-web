@@ -27,8 +27,8 @@
     "**/*.tsx",
     "**/*.less",
     "src/server.ts",
-    "src/pages/server.js",
-    "src/pages/server.js"
+    "src/pages/server.ts",
+    "src/pages/server."
   ],
   "exclude": ["node_modules"]
 }
