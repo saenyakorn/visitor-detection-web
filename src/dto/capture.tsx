@@ -1,5 +1,6 @@
 export interface CaptureDTO {
-  name: string
-  imageURL: string
-  createdDate: string
+  user: string
+  image: string
+  deviceName: string
+  timestamp: string
 }
