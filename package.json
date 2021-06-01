@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "rm -rf ./build && rm -rf ./dist && cp ./src ./dist && tsc && NODE_ENV=production next build ",
+    "build": "rm -rf ./build && rm -rf ./dist && tsc && cp -R ./src/* ./dist && NODE_ENV=production next build",
     "gcp-build": "yarn build",
     "start": "node dist/index.js",
     "deploy": "yarn build && gcloud app deploy",
