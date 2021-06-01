@@ -7,11 +7,18 @@ module.exports = withOptimizedImages(
     distDir: 'build',
     optimizeImages: false, // need to change this to `true` later
     cssModules: true,
-    lessVarsFilePath: 'src/styles/variables.less',
+    lessVarsFilePath:
+      process.env.NODE_ENV !== 'production'
+        ? 'src/styles/variables.less'
+        : 'dist/styles/variables.less',
     lessVarsFilePathAppendToEndOfContent: false,
-    cssLoaderOptions: {},
+    cssLoaderOptions: {
+      importLoaders: 1,
+    },
+    future: {
+      webpack5: true,
+    },
     webpack: (config, options) => {
-      // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
       return config
     },
   }),

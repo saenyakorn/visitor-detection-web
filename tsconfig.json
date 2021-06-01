@@ -3,15 +3,10 @@
     "baseUrl": "./src",
     "target": "es6",
     "outDir": "./dist",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "noEmit": false,
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -21,20 +16,9 @@
     "noImplicitAny": true,
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
-    "paths": {
-      "@app/*": [
-        "./*"
-      ]
-    },
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": false
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.less"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.less"],
+  "exclude": ["node_modules"]
 }
