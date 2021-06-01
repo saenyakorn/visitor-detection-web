@@ -1,11 +1,11 @@
 import { PlusOutlined } from '@ant-design/icons'
-import { AddDeviceModal } from '@app/components/molecules/AddDeviceModal'
-import { Capture } from '@app/components/organisims/Capture'
-import { Device } from '@app/components/organisims/Device'
-import { httpClient } from '@app/config/http'
+import { AddDeviceModal } from '../../molecules/AddDeviceModal'
+import { Capture } from '../../organisims/Capture'
+import { Device } from '../../organisims/Device'
+import { httpClient } from '../../../config/http'
 import { Button, Image, Space, Typography } from 'antd'
 import { ChangeEventHandler, useRef, useState } from 'react'
-import './style.less'
+require('./style.less')
 export interface DashboardProps {}
 
 export const Dashboard: React.FC<DashboardProps> = () => {

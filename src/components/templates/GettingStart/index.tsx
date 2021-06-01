@@ -1,7 +1,7 @@
 import { Button, Row, Space, Typography } from 'antd'
 import { signIn } from 'next-auth/client'
 import Link from 'next/link'
-import './style.less'
+require('./style.less')
 
 const { Title, Text } = Typography
 

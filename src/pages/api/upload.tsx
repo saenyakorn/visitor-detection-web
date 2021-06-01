@@ -1,4 +1,4 @@
-import { firestore } from '@app/lib/firebase-admin'
+import { firestore } from '../../lib/firebase-admin'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { format } from 'date-fns'
 import jwt from 'jsonwebtoken'

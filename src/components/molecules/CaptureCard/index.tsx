@@ -1,7 +1,7 @@
-import { MoreAction } from '@app/components/atoms'
-import { CaptureDTO } from '@app/dto/capture'
 import { Card, Image } from 'antd'
-import './style.less'
+import { MoreAction } from '../../atoms'
+import { CaptureDTO } from '../../../dto/capture'
+require('./style.less')
 
 export interface CaptureCardProps extends Omit<CaptureDTO, 'user'> {}
 

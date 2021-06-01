@@ -1,4 +1,4 @@
-import { httpClient } from '@app/config/http'
+import { httpClient } from '../../../config/http'
 import { Input, Typography, Form } from 'antd'
 import { ValidateStatus } from 'antd/lib/form/FormItem'
 import Modal, { ModalProps } from 'antd/lib/modal/Modal'

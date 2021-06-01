@@ -1,10 +1,10 @@
-import { Error, Loading } from '@app/components/atoms'
-import { CaptureCard } from '@app/components/molecules/CaptureCard'
-import { CaptureDTO } from '@app/dto/capture'
+import { Error, Loading } from '../../atoms'
+import { CaptureCard } from '../../molecules/CaptureCard'
+import { CaptureDTO } from '../../../dto/capture'
 import { Row, Col } from 'antd'
 import axios from 'axios'
 import useSWR from 'swr'
-import './style.less'
+require('./style.less')
 
 export interface CaptureProps {}
 

@@ -1,4 +1,4 @@
-import './style.less'
+require('./style.less')
 
 export interface DocumentWrapperProps {}
 

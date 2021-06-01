@@ -1,4 +1,4 @@
-import mqttClient from '@app/mqtt-client'
+import mqttClient from '../../mqtt-client'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

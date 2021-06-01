@@ -1,11 +1,12 @@
-import '@app/styles/theme.less'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { AppProps } from 'next/dist/next-server/lib/router/router'
-import { NavBar } from '@app/components/molecules/NavBar'
+import { NavBar } from '../components/molecules/NavBar'
 import NProgress from 'nprogress'
 import Head from 'next/head'
 import { Provider } from 'next-auth/client'
+
+require('../styles/theme.less')
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()

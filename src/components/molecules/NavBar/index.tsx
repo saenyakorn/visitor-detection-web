@@ -1,7 +1,7 @@
 import { Menu, MenuProps, Row } from 'antd'
 import { HomeOutlined, ContainerOutlined } from '@ant-design/icons'
 import { useEffect, useState } from 'react'
-import './style.less'
+require('./style.less')
 import { AccountButton } from '../../atoms/AccountButton'
 import Link from 'next/link'
 

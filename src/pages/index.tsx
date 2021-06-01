@@ -1,4 +1,4 @@
-import { Dashboard, GettingStart } from '@app/components/templates'
+import { Dashboard, GettingStart } from '../components/templates'
 import { useSession } from 'next-auth/client'
 
 export default function HomePage() {

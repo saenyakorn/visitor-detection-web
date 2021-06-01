@@ -1,7 +1,7 @@
 import { getToken } from 'next-auth/jwt'
 import { NextApiRequest, NextApiResponse } from 'next'
-import { CaptureDTO } from '@app/dto/capture'
-import { firestore } from '@app/lib/firebase-admin'
+import { CaptureDTO } from '../../dto/capture'
+import { firestore } from '../../lib/firebase-admin'
 import { getSession } from 'next-auth/client'
 
 const secret = process.env.NEXT_AUTH_SECRET || ''

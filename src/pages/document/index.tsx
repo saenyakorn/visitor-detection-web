@@ -1,7 +1,7 @@
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import matter from 'gray-matter'
-import { DocumentWrapper } from '@app/components/molecules/DocumentWraper'
+import { DocumentWrapper } from '../../components/molecules/DocumentWraper'
 import fs from 'fs'
 
 interface DocumnetPageProps {

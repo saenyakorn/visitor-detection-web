@@ -1,6 +1,6 @@
 import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { Dropdown, Menu } from 'antd'
-import './style.less'
+require('./style.less')
 
 export interface MoreActionProps {
   onDelete: () => void

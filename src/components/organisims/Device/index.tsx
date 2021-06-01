@@ -1,10 +1,10 @@
-import { Error, Loading } from '@app/components/atoms'
-import { DeviceCard } from '@app/components/molecules/DeviceCard'
-import { DeviceDTO } from '@app/dto/devices'
+import { Error, Loading } from '../../atoms'
+import { DeviceCard } from '../../molecules/DeviceCard'
+import { DeviceDTO } from '../../../dto/devices'
 import { Col, Row } from 'antd'
 import axios from 'axios'
 import useSWR from 'swr'
-import './style.less'
+require('./style.less')
 
 export interface DeviceProps {}
 

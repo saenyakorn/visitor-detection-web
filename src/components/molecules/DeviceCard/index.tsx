@@ -1,8 +1,8 @@
-import { MoreAction } from '@app/components/atoms'
-import { httpClient } from '@app/config/http'
-import { DeviceDTO } from '@app/dto/devices'
+import { MoreAction } from '../../atoms'
+import { httpClient } from '../../../config/http'
+import { DeviceDTO } from '../../../dto/devices'
 import { Button, Card } from 'antd'
-import './style.less'
+require('./style.less')
 
 export interface DeviceCardProps extends Omit<DeviceDTO, 'user'> {}
 
