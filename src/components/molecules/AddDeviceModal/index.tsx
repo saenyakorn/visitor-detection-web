@@ -1,9 +1,12 @@
 import { httpClient } from '../../../config/http'
-import { Input, Typography, Form } from 'antd'
+import { Input, Typography, Form, ModalProps, Modal } from 'antd'
 import { ValidateStatus } from 'antd/lib/form/FormItem'
-import Modal, { ModalProps } from 'antd/lib/modal/Modal'
 import Paragraph from 'antd/lib/typography/Paragraph'
 import { ChangeEventHandler, useState } from 'react'
+import { useData } from 'context'
+import { DeviceDTO } from 'dto/devices'
+import { format } from 'date-fns'
+import { useSession } from 'next-auth/client'
 
 export interface AddDeviceModalProps extends Exclude<ModalProps, 'title'> {
   setVisible: React.Dispatch<React.SetStateAction<boolean>>
@@ -13,14 +16,23 @@ export const AddDeviceModal: React.FC<AddDeviceModalProps> = ({ setVisible, ...p
   const [value, setValue] = useState('')
   const [token, setToken] = useState<string>()
   const [status, setStatus] = useState<ValidateStatus>('')
+  const { deviceData, deviceMutate } = useData()
+  const [session] = useSession()
 
   const handleOk = async () => {
     if (!token) {
       try {
         const { data } = await httpClient.post<{ token: string }>('/api/devices', {
           name: value,
+          timestamp: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
         })
         setToken(data.token)
+        const newDevice: DeviceDTO = {
+          user: session?.user?.email as string,
+          name: value,
+          lastActive: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+        }
+        deviceMutate(deviceData ? [...deviceData, newDevice] : [newDevice])
       } catch (err) {
         setStatus('error')
       }

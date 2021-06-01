@@ -1,28 +1,26 @@
 import { Error, Loading } from '../../atoms'
 import { CaptureCard } from '../../molecules/CaptureCard'
-import { CaptureDTO } from '../../../dto/capture'
 import { Row, Col } from 'antd'
-import axios from 'axios'
-import useSWR from 'swr'
+import { useData } from 'context'
 require('./style.less')
 
 export interface CaptureProps {}
 
-const fetcher = () => axios.get<CaptureDTO[]>('/api/captures').then(result => result.data)
-
 export const Capture: React.FC<CaptureProps> = () => {
-  const { data, error } = useSWR('/api/captures', fetcher)
+  const { captureData, captureError } = useData()
 
-  if (error) return <Error />
-  if (!data) return <Loading />
+  if (captureError) return <Error />
+  if (!captureData) return <Loading />
 
   return (
     <Row gutter={[16, 16]} className="capture">
-      {data.map((item, index) => (
-        <Col sm={12} md={8} lg={6} className="gutter-row" key={`capture-${index}`}>
-          <CaptureCard {...item} />
-        </Col>
-      ))}
+      {captureData
+        .sort(({ timestamp: A }, { timestamp: B }) => (A > B ? -1 : 1))
+        .map(item => (
+          <Col sm={12} md={8} lg={6} className="gutter-row" key={item._id}>
+            <CaptureCard {...item} />
+          </Col>
+        ))}
     </Row>
   )
 }
