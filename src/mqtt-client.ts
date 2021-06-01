@@ -1,5 +1,6 @@
 import mqtt from 'mqtt'
 import axios from 'axios'
+import { format } from 'date-fns'
 
 const mqttClient: mqtt.MqttClient = mqtt.connect('wss://mqtt.netpie.io/mqtt', {
   clientId: process.env.MQTT_CLIENT_ID,
@@ -27,6 +28,7 @@ mqttClient.on('message', async (topic: string, payload: Buffer) => {
         {
           token: token,
           image: base64,
+          timestamp: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
         },
         { timeout: 100000 },
       )
