@@ -3,7 +3,7 @@ import next from 'next'
 import { loadEnvConfig } from '@next/env'
 loadEnvConfig(process.cwd(), process.env.NODE_ENV !== 'production')
 
-import './mqtt'
+import './mqtt-client'
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })

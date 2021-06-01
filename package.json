@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "ts-node --project tsconfig.server.json server/index.ts",
-    "build": "next build",
-    "start": "ts-node --project tsconfig.server.json server/index.ts",
+    "dev": "nodemon src/index.ts",
+    "build": "rm -rf ./build && rm -rf ./dist && cp ./src ./dist && tsc && NODE_ENV=production next build ",
+    "gcp-build": "yarn build",
+    "start": "node dist/index.js",
+    "deploy": "yarn build && gcloud app deploy",
     "storybook": "start-storybook -s ./public -p 6006",
     "lint:test": "yarn eslint .",
     "lint:fix": "yarn eslint --fix ."
@@ -14,6 +16,8 @@
     "@ant-design/icons": "^4.6.2",
     "antd": "^4.15.3",
     "axios": "^0.21.1",
+    "babel-plugin-import": "^1.13.3",
+    "babel-plugin-module-resolver": "^4.1.0",
     "date-fns": "^2.22.1",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -26,10 +30,13 @@
     "next": "10.2.0",
     "next-auth": "^3.19.3",
     "next-mdx-remote": "^3.0.2",
+    "next-optimized-images": "^2.6.2",
+    "next-plugin-antd-less": "^1.2.1",
     "nprogress": "^0.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "swr": "^0.5.5"
+    "swr": "^0.5.5",
+    "typescript": "^4.3.2"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.2.9",
@@ -41,25 +48,22 @@
     "@types/jsonwebtoken": "^8.5.1",
     "@types/mqtt": "^2.5.0",
     "@types/multer": "^1.4.5",
-    "@types/node": "^15.0.1",
+    "@types/next": "^9.0.0",
+    "@types/node": "^15.6.1",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^17.0.4",
+    "@types/react-dom": "^17.0.5",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
-    "babel-plugin-import": "^1.13.3",
-    "babel-plugin-module-resolver": "^4.1.0",
     "eslint": "^7.25.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "next-optimized-images": "^2.6.2",
-    "next-plugin-antd-less": "^1.1.4",
     "prettier": "^2.2.1",
     "storybook-addon-next-router": "^2.0.4",
-    "ts-node": "^10.0.0",
-    "typescript": "^4.2.4"
+    "ts-node": "^10.0.0"
   },
   "husky": {
     "hooks": {

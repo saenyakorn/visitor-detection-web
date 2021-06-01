@@ -39,3 +39,6 @@ yarn-error.log*
 
 # sensitive files
 service-account.json
+
+# tsc
+dist

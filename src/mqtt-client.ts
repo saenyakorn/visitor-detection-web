@@ -1,5 +1,5 @@
-import axios from 'axios'
 import mqtt from 'mqtt'
+import axios from 'axios'
 
 const mqttClient: mqtt.MqttClient = mqtt.connect('wss://mqtt.netpie.io/mqtt', {
   clientId: process.env.MQTT_CLIENT_ID,
