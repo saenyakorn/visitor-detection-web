@@ -28,6 +28,7 @@ export const AddDeviceModal: React.FC<AddDeviceModalProps> = ({ setVisible, ...p
         })
         setToken(data.token)
         const newDevice: DeviceDTO = {
+          _id: 'ssss',
           user: session?.user?.email as string,
           name: value,
           lastActive: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),

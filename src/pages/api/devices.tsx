@@ -22,13 +22,12 @@ const post = async (req: NextApiRequest) => {
     })
     if (id) throw new Error("the name isn't unique")
     const tk = jwt.sign({ user: user, deviceName: name }, jwtSecret)
-    await firestore.collection('devices').add({
-      _id: id,
+    const ref = await firestore.collection('devices').add({
       user: user,
       name: name,
       lastActive: timestamp,
     })
-    return tk
+    return { tk, id: ref.id }
   }
 }
 
@@ -62,8 +61,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const session = await getSession({ req })
     if (token?.accessToken && session?.user) {
       if (req.method === 'POST') {
-        const tk = await post(req)
-        res.status(200).json({ token: tk })
+        const { tk, id } = (await post(req)) as { tk: string; id: string }
+        res.status(200).json({ token: tk, id: id })
       } else if (req.method === 'GET') {
         const allDevice = await get(req)
         res.status(200).json(allDevice)
