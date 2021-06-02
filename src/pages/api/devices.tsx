@@ -20,7 +20,7 @@ const post = async (req: NextApiRequest) => {
     snapshot.forEach(doc => {
       if ((doc.data() as DeviceDTO).name === name) id = doc.id
     })
-    if (!id) throw new Error("the name isn't unique")
+    if (id) throw new Error("the name isn't unique")
     const tk = jwt.sign({ user: user, deviceName: name }, jwtSecret)
     await firestore.collection('devices').add({
       _id: id,
