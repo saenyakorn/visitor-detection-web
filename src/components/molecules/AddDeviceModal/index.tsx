@@ -24,14 +24,14 @@ export const AddDeviceModal: React.FC<AddDeviceModalProps> = ({ setVisible, ...p
       try {
         const { data } = await httpClient.post<{ token: string }>('/api/devices', {
           name: value,
-          timestamp: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          timestamp: format(new Date().getTime() + 7 * 60 * 60 * 1000, 'yyyy-MM-dd HH:mm:ss'),
         })
         setToken(data.token)
         const newDevice: DeviceDTO = {
           _id: 'ssss',
           user: session?.user?.email as string,
           name: value,
-          lastActive: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+          lastActive: format(new Date().getTime() + 7 * 60 * 60 * 1000, 'yyyy-MM-dd HH:mm:ss'),
         }
         deviceMutate(deviceData ? [...deviceData, newDevice] : [newDevice])
       } catch (err) {
