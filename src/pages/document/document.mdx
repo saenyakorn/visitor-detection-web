@@ -1,0 +1,90 @@
+---
+title: Documentation
+---
+
+<Paragraph>
+  Visitor Detection ระบบตรวจจับบุคคลที่ผ่านเข้ามาที่หน้าประตูบ้านด้วยเซนเซอร์อินฟราเรด
+  เมื่อตรวจจับบุคคลได้กล้องจะทำการเก็บภาพไว้ สามารถล็อกอินเข้าสู่เว็บไซต์ด้วย Google Account
+  เพื่อดูภาพที่ถูกเก็บไว้ได้ และหากผู้ใช้กดปุ่มสัญญาณกันขโมยบนเว็บไซต์
+  จะทำการเปิดสัญญาณกันขโมยที่ตัวบ้าน (แทนด้วยการกะพริบไฟ LED เตือน)
+  ระบบสามารถรองรับอุปกรณ์หลายชุดสำหรับ Google Account หลายบัญชีได้ โดยเมื่อล็อกอินแต่ละบัญชี
+  จะเห็นเฉพาะภาพของที่อุปกรณ์ของตนเองถ่ายมาเท่านั้น
+</Paragraph>
+
+# สารบัญ
+
+- [Relate Repositories](#relate-repository)
+- [Instruction](#instruction)
+- [How it works](#how-it-works)
+
+<div id="relate-repository"></div>
+
+# Related Repositories
+
+- [Website](https://github.com/saenyakorn/visitor-detection-web)
+- [STM32](https://github.com/Anon-136/visitor-detection-stm32)
+
+<div id="instruction"></div>
+
+# Instruction
+
+1. ติดตั้งอุปกรณ์ที่ด้านหน้าของประตู โดยให้เซนเซอร์อินฟราเรดกับกล้องเห็นบริเวณหน้าประตูชัดเจน
+
+2. เข้าสู่ระบบด้วย Google Account ที่ https://visitor.saenyakorn.dev
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807311-04a81500-c572-11eb-967a-4203303b5bb1.png" />
+</div>
+
+3. เมื่อเข้าสู่ระบบแล้วจะเจอหน้า dashboard ดังนี้
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807379-14275e00-c572-11eb-917b-85bebccf18fa.png" />
+</div>
+
+4. จากนั้น กด “add device” เพื่อตั้งชื่อและลงทะเบียนอุปกรณ์ที่เราจะใช้ในการถ่ายรูปและตรวจจับคน โดยชื่อนั้นจะต้องไม่ซ้ำกับ device อื่น ๆ ที่เรามีอยู่ เช่น
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807380-15588b00-c572-11eb-8363-07194f39116e.png" />
+</div>
+
+5. เมื่อกด “OK” แล้วเราจะได้ Token สำหรับให้อุปกรณ์นั้น ๆ มา จากนั้นคัดลอก Token ที่ได้มา hardcode ลง NodeMCU ของคุณ โดย Token ดังกล่าว จะเป็นตัวระบุว่าอุปกรณ์ชุดนี้เชื่อมต่อกับบัญชีผู้ใช้ใด ซึ่งหนึ่งบัญชีสามารถเชื่อมต่ออุปกรณ์ได้หลายชุด
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807383-15f12180-c572-11eb-8d25-8c3effb90b79.png" />
+</div>
+
+6. เมื่อเซนเซอร์อินฟราเรดตรวจพบคน กล้องจะทำการถ่ายภาพ แล้วส่งให้กับเว็บไซต์ ซึ่งโดยทั่วไปเราจะติดตั้งไว้ให้เห็นหน้าของคนที่เข้ามาในบ้าน โดยในรูปที่แสดงผลจะประกอบไปด้วย “ชื่ออุปกรณ์”, “เวลาที่ถ่าย” และ “รูปที่ถ่ายได้” ดังนี้
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807388-1689b800-c572-11eb-8958-16d81df34fd1.png" />
+</div>
+
+7. หากรูปที่ส่งมาเป็นรูปของคนที่ไม่ได้อยู่ในบ้านเรา (หรือเรียกง่าย ๆ ว่าเป็นโจร) เราสามารถส่งสัญญาณกันขโมยได้โดยการกดปุ่ม “Alert” ของ Device นั้น ๆ แล้วเว็บจะส่งสัญญาณให้ NodeMCU ผ่าน Netpie แล้ว NodeMCU จะเปิดสัญญาณเตือนภัยต่อไป
+
+<div id="how-it-works"></div>
+
+# How it works
+
+อุปกรณ์ทั้งหมดเชื่อมต่อกันดังนี้
+
+<div className="doc-image">
+  <Image src="https://user-images.githubusercontent.com/33742791/120807395-17bae500-c572-11eb-8b1d-1716d040d1d7.png" />
+</div>
+
+NodeMCU กับเว็บไซต์ส่งข้อมูลให้กันผ่าน Netpie Platform โดยทั้ง 2 อุปกรณ์เชื่อมกับ Netpie ด้วยโปรโตคอล MQTT แล้วทำการ subscribe หัวข้อที่ต้องการรับคำสั่ง ดังนี้
+NodeMCU subscribe topic “@msg/alarm” (เมื่อปุ่ม Alarm ถูกกด ฝั่งเว็บไซต์จะเป็นผู้ transmit ข้อความมาในรูปแบบ string “on”)
+เว็บไซต์ subscribe topic “@msg/img” (เมื่อต้องการจะส่งรูปภาพ ฝั่ง NodeMCU จะเป็นผู้ transmit ข้อความมาในรูปแบบ JSON string ประกอบด้วย token กับ image)
+
+เมื่อค่าของเซนเซอร์อินฟราเรดอยู่ในช่วงต่ำกว่า 100 จะถือว่ามีอะไรบางอย่างอยู่หน้าประตู STM32 จะใช้โปรโตคอล UART ส่งสัญญาณไปยัง NodeMCU เมื่อ NodeMCU ได้รับสัญญาณจึงจะบันทึกภาพจากกล้อง และจัดเตรียมเพื่อส่งให้กับเว็บไซต์
+ภาพที่ได้จากกล้องจะอยู่ในรูปแบบ .JPEG โดย NodeMCU จะแปลงเป็น Base64 และ transmit JSON นี้ออกไปใน topic “@msg/img”
+
+```typescript
+{
+  token: string // ได้มาจากหน้า Devices ของเว็บไซต์ ระบุบัญชีผู้ใช้อุปกรณ์,
+  image: string // Base64
+}
+```
+
+เว็บไซต์จะ parse JSON ได้ token กับ image โดยเก็บรูปในรูปแบบ Base64 ใน Firestore และแสดงผลรูปภาพ (ซึ่งเป็น Base64) บนหน้าเว็บ
+เมื่อปุ่ม Alert ที่หน้าเว็บโดนกด เว็บไซต์จะ transmit สตริง “on” ออกไปใน topic “@msg/alarm” เมื่อ NodeMCU ได้รับ จะเปิดสัญญาณกันขโมย (กะพริบ LED)

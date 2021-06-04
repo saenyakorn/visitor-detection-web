@@ -9,7 +9,23 @@ body {
 }
 
 #__next {
+  margin: 0;
+  padding: 0;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+}
+
+.doc-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: @spacing * 4px 0;
+  .ant-image {
+    width: 500px;
+    @media only screen and (max-width: @screen-md) {
+      width: 300px;
+    }
+  }
 }
