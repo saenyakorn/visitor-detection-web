@@ -1,4 +1,4 @@
-# Visitor Dection
+# Visitor Detection
 
 2110356 Embedded System Project; The web application used for receiving the picture from the STM32's camera and alerting if there is a non-visitor go inside the house.
 
@@ -6,7 +6,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Related Repositories
 
-- [visitor-detection-stm32](https://github.com/saenyakorn/visitor-detection-stm32) - Using STM32 for detecting the visitors with the infrared sensor and ESP32-Cam for sending the picture to the server.
+- [visitor-detection-stm32](https://github.com/anon-136/visitor-detection-stm32) - Using STM32 for detecting the visitors with the infrared sensor and ESP32-Cam for sending the picture to the server.
 
 ## Getting Started
 
